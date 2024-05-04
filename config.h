@@ -2,6 +2,7 @@
 /* Default settings; can be overriden by command line. */
 
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
+static int fuzzy = 1;
 static int centered = 1;                    /* -c option; centers dmenu on screen */
 static int min_width = 500;                    /* minimum width when centered */
 /* -fn option overrides fonts[0]; default X11 font or font set */
@@ -9,16 +10,17 @@ static const char *fonts[] = {
 	"mononoki-Regular.otf:style:medium:size=12:antialias=true:autohint=true"
 };
 #include "tokyonight.h"
+#include "zenburn.c"
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { white, black },
-	[SchemeSel] = { black, white },
-	[SchemeSelHighlight] = { white, black2 },
-	[SchemeNormHighlight] = { yellow, black },
+	[SchemeNorm] = { Pmenu_fg, Pmenu_bg},
+	[SchemeSel] = { Pmenu_bg, Pmenu_fg},
+	[SchemeSelHighlight] = { TabLineSel_fg, TabLineSel_bg},
+	[SchemeNormHighlight] = { CursorLineNr_fg, CursorLineNr_bg},
 	[SchemeOut] = { "black", green },
 	[SchemeOutHighlight] = { blue, red },
-	[SchemeCursor] = { black, white},
+	[SchemeCursor] = { Cursor_fg, Cursor_bg},
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines      = 12;
